@@ -1,6 +1,7 @@
 package com.example.demo.controller
 
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -9,7 +10,13 @@ import org.springframework.web.bind.annotation.RestController
 class HookController {
 
     @GetMapping
-    fun getPaySystemsByCurrencyAndCurrentUser(): List<String> {
+    fun getSomeData(): List<String> {
+        return listOf("test")
+    }
+
+    @PostMapping
+    fun catchGitlabHook(): List<String> {
+        println("Catch!!")
         return listOf("test")
     }
 }
