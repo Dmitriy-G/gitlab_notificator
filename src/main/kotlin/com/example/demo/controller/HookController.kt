@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/hook")
 class HookController {
-
     @GetMapping
     fun getSomeData(): List<String> {
         return listOf("test")
