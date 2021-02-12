@@ -21,8 +21,9 @@ class HookController(
     @PostMapping
     fun catchGitlabHook(@RequestBody body: String): List<String> {
         println(body)
-        val user = userService.getUserByUsername("dgorokhovtsev")
-        println(user)
+        //val user = userService.getUserByUsername("dgorokhovtsev")
+        userService.registerByUsername("testChat", "dgorokhovtsev")
+        //println(user)
         return listOf("test")
     }
 }
