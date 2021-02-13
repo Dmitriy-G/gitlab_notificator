@@ -3,6 +3,7 @@ package com.example.demo.sender
 import com.example.demo.service.UserService
 import javax.annotation.PostConstruct
 import mu.KotlinLogging
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
 import org.telegram.telegrambots.meta.api.objects.Update
@@ -18,15 +19,16 @@ import org.telegram.telegrambots.meta.TelegramBotsApi
 
 
 @Component
+@ConfigurationProperties(prefix = "telegram")
 class TelegramBotSender(
         val userService: UserService
 ) : TelegramLongPollingBot() {
 
     private val logger = KotlinLogging.logger {}
 
-    //TODO: move to properties
-    private val telegramBotName = ""
-    private val telegramBotToken = ""
+    //TODO: не спамить сообщениеми тех, кому уже их отправляли по данному реквесту
+    lateinit var botName: String
+    lateinit var botAccessToken: String
 
 
     @PostConstruct
@@ -40,11 +42,11 @@ class TelegramBotSender(
     }
 
     override fun getBotToken(): String {
-        return this.telegramBotToken
+        return this.botAccessToken
     }
 
     override fun getBotUsername(): String {
-        return this.telegramBotName
+        return this.botName
     }
 
     override fun onUpdateReceived(update: Update) {

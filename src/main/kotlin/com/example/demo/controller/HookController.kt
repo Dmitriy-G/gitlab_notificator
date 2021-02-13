@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/hook")
 class HookController(
-        private val gitlabRequestService: GitlabRequestService,
         private val webHookManager: HookManager
 ) {
 
@@ -24,7 +23,6 @@ class HookController(
     @PostMapping
     fun catchGitlabHook(@Context request: HttpServletRequest): String {
         webHookManager.handleEvent(request)
-        //gitlabRequestService.resolveGitlabRequest(body)
         return ""
     }
 }
