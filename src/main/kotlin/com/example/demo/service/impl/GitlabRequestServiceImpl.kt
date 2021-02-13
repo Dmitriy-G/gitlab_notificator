@@ -16,7 +16,7 @@ class GitlabRequestServiceImpl(
     private val logger = KotlinLogging.logger {}
 
     override fun resolveGitlabRequest(event: MergeRequestEvent) {
-        val assigneeIds = event.assignees
+        val assigneeIds = event.assignees ?: return
         val mergeRequestUrl = event.objectAttributes.url.replace("_", "\\_")
 
         val message = String.format("You have been assigned a merge request %s", mergeRequestUrl)
