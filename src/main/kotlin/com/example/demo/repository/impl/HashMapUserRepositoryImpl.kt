@@ -11,15 +11,16 @@ class HashMapRepositoryImpl : UserRepository{
     private val storage: MutableMap<String, GitlabUser> = mutableMapOf()
 
 
-    override fun save(user: GitlabUser) {
+    override fun save(user: GitlabUser) : GitlabUser {
         storage[user.id] = user
+        return user
     }
 
     override fun getByUsername(username: String): GitlabUser? {
         return storage.entries.firstOrNull { it.value.username == username}?.value
     }
 
-    override fun getById(id: String): GitlabUser? {
+    override fun getById(id: String?): GitlabUser? {
         return storage[id]
     }
 
