@@ -21,6 +21,7 @@ class UserServiceImpl (
             val message = String.format("User with username %s already registered", username)
             throw IllegalArgumentException(message)
         }
+        //TODO: использовать библиотеку GitlabApi
         user = getFromApi(buildGitlabUsersUrl(username))
         user.channelId = channelId
         return userRepository.save(user)
@@ -34,6 +35,7 @@ class UserServiceImpl (
         return userRepository.getById(id)
     }
 
+    @Deprecated(message = "Нужно использовать библиотеку GitlabApi")
     private fun getFromApi(url: URL): GitlabUser {
         var resp = ""
         with(url.openConnection() as HttpURLConnection) {
