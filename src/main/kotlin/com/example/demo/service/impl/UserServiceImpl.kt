@@ -2,7 +2,6 @@ package com.example.demo.service.impl
 
 import com.example.demo.model.GitlabUser
 import com.example.demo.repository.UserRepository
-import com.example.demo.service.NotificationSenderService
 import com.example.demo.service.UserService
 import com.google.gson.Gson
 import java.lang.IllegalArgumentException
